@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { RegisterResponseDTO, RegistrationDTO } from '../dtos/RegistrationDtos';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserdataService {
+
+  constructor(private http: HttpClient) {
+   }
+
+   registerUser(dto: RegistrationDTO):Observable<RegisterResponseDTO>{
+    return this.http.post<RegisterResponseDTO>(environment.apiUrl+`user/register`,dto);
+  }
+  activateUser(activationId: string):Observable<any>{
+    return this.http.get(environment.apiUrl+`user/activate/${activationId}`);
+  }
+}

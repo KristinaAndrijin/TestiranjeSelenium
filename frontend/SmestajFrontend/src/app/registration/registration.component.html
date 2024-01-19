@@ -1,1 +1,48 @@
-<p>registration works!</p>
+<div class="div">
+    <div class="form-container">
+        <h1>Registration</h1>
+        <form
+        method="POST"
+        [formGroup]="registerForm" 
+        (ngSubmit)="register()"
+        >
+        <input class="element" type="email" id="e-mail" name="e-mail" placeholder="E-mail" formControlName="email">
+        <div *ngIf="registerForm.hasError('validEmail')">
+            Invalid email format
+        </div>
+        <br>
+        <input class="element" type="password" id="password" name="password" placeholder="Password" formControlName="password"> 
+        <div *ngIf="registerForm.hasError('validPassword')">Password not in the right format <br>
+            (At least 8 charachers, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special characher)</div>
+        <br>
+        <input class="element" type="password" id="repeat-password" name="repeat password" placeholder="Repeat password" formControlName="repeatPassword">
+        <div *ngIf="registerForm.hasError('notSame')">Passwords do not match</div>
+        <div *ngIf="registerForm.hasError('validRepeatPassword')">Password not in the right format <br>
+            (At least 8 charachers, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special characher)</div>
+        <br>
+        <input class="element" type="text" id="name" name="name" placeholder="Name" formControlName="name">
+        <div *ngIf="registerForm.hasError('validName')">Name not in the right format</div>
+        <br>
+        <input class="element" type="text" id="surname" name="surname" placeholder="Surname" formControlName="surname">
+        <div *ngIf="registerForm.hasError('validSurname')">Surname not in the right format</div>
+        <br>
+
+        <!-- bice 3 komponente -->
+        <input class="element" type="text" id="address" name="address" placeholder="Home address" formControlName="address">
+        <div *ngIf="registerForm.hasError('validSurname')">Surname not in the right format</div>
+        <br>
+         <input class="element" type="tel" id="phone-number" name="phone number" placeholder="Phone number" formControlName="phone">
+        <div *ngIf="registerForm.hasError('validPN')">Number not in the right format</div>
+        <br>
+        <!--<input type="radio" value="emailValidation" name="validationType" formControlName="validationType" [checked]="true"> Verify with Email
+        <br>
+        <input type="radio" value="phoneValidation" name="validationType" formControlName="validationType"> Verify with SMS
+        <br> -->
+        <br>
+        <button type="submit" (keydown.enter)="register()" [disabled]="isDisabled">Register</button>
+        <p class="small mb-5 pb-lg-2"> Already have account? <a class="text-white-50" [routerLink]="['/login']">Log in</a></p>
+        </form>
+    </div>
+
+</div>
+  

@@ -29,8 +29,8 @@ export class UserdataService {
     return this.http.get(environment.apiUrl+`user/${id}`);
   }
 
-  editUser(id: string, body: UserDTO):Observable<any>{
-    return this.http.put<any>(`${environment.apiUrl}user/${id}`, body);
+  editUser(body: UserDTO):Observable<any>{
+    return this.http.put<any>(`${environment.apiUrl}user/`, body);
   }
 
 }

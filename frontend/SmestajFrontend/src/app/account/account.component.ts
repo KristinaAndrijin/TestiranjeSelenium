@@ -86,7 +86,7 @@ export class AccountComponent {
                 address: this.accountForm.get('address')?.value,
               }
               console.log(dto);
-              this.userData.editUser(this.id, dto).subscribe({
+              this.userData.editUser(dto).subscribe({
                 next: result => {
                   // this.snackBar.open('check email, '+ result.name, undefined, {
                   //   duration: 2000,
@@ -94,7 +94,7 @@ export class AccountComponent {
                   // alert('check email, '+ result.name);
                   alert("jej");
                   console.log(result);
-                  this.accountForm.reset();
+                  // this.accountForm.reset();
                 },
                 error: e =>
                   {console.log(e?.error?.message);

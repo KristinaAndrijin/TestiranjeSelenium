@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +12,7 @@ import { AccountComponent } from './account/account.component';
 import { EditAccomodationComponent } from './edit-accomodation/edit-accomodation.component';
 import { ViewReservationComponent } from './view-reservation/view-reservation.component';
 import { LoginComponent } from './login/login.component';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,13 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

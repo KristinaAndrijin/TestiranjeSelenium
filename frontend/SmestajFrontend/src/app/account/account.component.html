@@ -1,1 +1,37 @@
-<p>account works!</p>
+<div class="div">
+    <div class="form-container">
+        <h1>Edit account</h1>
+        <form
+        method="POST"
+        [formGroup]="accountForm" 
+        (ngSubmit)="editAccount()"
+        >
+        <input class="element" type="text" id="email" name="email" placeholder="E-mail" formControlName="email" [value]="accountForm.get('email')?.value">
+        <div *ngIf="accountForm.hasError('validEmail')">
+            Invalid email format
+        </div>
+        <br>
+        <input class="element" type="text" id="name" name="name" placeholder="Name" formControlName="name">
+        <div *ngIf="accountForm.hasError('validName')">Name not in the right format</div>
+        <br>
+        <input class="element" type="text" id="surname" name="surname" placeholder="Surname" formControlName="surname">
+        <div *ngIf="accountForm.hasError('validSurname')">Surname not in the right format</div>
+        <br>
+
+        <!-- bice 3 komponente -->
+        <input class="element" type="text" id="address" name="address" placeholder="Home address" formControlName="address">
+        <br>
+         <input class="element" type="tel" id="phone-number" name="phone number" placeholder="Phone number" formControlName="phone">
+        <div *ngIf="accountForm.hasError('validPN')">Number not in the right format</div>
+        <br>
+        <!--<input type="radio" value="emailValidation" name="validationType" formControlName="validationType" [checked]="true"> Verify with Email
+        <br>
+        <input type="radio" value="phoneValidation" name="validationType" formControlName="validationType"> Verify with SMS
+        <br> -->
+        <br>
+        <button type="submit" (keydown.enter)="editAccount()" [disabled]="isDisabled">Edit information</button>
+        </form>
+    </div>
+
+</div>
+  

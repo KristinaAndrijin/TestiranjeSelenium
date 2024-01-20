@@ -29,15 +29,18 @@
 
         <!-- bice 3 komponente -->
         <input class="element" type="text" id="address" name="address" placeholder="Home address" formControlName="address">
-        <div *ngIf="registerForm.hasError('validSurname')">Surname not in the right format</div>
         <br>
          <input class="element" type="tel" id="phone-number" name="phone number" placeholder="Phone number" formControlName="phone">
         <div *ngIf="registerForm.hasError('validPN')">Number not in the right format</div>
         <br>
-        <!--<input type="radio" value="emailValidation" name="validationType" formControlName="validationType" [checked]="true"> Verify with Email
+        <!-- <select #roleOption class="element" name="roleOption" formControlName="roleOption">
+            <option *ngFor="let option of roleOption;let i = 'index';" [value]="option">{{option}}</option>
+        </select>
+          <br> -->
+        <input type="radio" value="OWNER" name="roleOption" formControlName="roleOption" [checked]="true"> Owner
         <br>
-        <input type="radio" value="phoneValidation" name="validationType" formControlName="validationType"> Verify with SMS
-        <br> -->
+        <input type="radio" value="USER" name="roleOption" formControlName="roleOption"> Guest
+        <br>
         <br>
         <button type="submit" (keydown.enter)="register()" [disabled]="isDisabled">Register</button>
         <p class="small mb-5 pb-lg-2"> Already have account? <a class="text-white-50" [routerLink]="['/login']">Log in</a></p>

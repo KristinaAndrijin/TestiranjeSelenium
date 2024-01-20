@@ -12,6 +12,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AccountComponent } from './account/account.component';
 import { EditAccomodationComponent } from './edit-accomodation/edit-accomodation.component';
 import { ViewReservationComponent } from './view-reservation/view-reservation.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ViewReservationComponent } from './view-reservation/view-reservation.co
     AccountComponent,
     EditAccomodationComponent,
     ViewReservationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

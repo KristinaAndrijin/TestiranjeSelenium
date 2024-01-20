@@ -1,11 +1,14 @@
 export interface RegistrationDTO{
     email:string;
     password:string;
-    name:string;
-    surname:string;
+    repeatPassword:string;
+    firstName:string;
+    lastName:string;
     address: string;
-    phone: string;
+    phoneNumber: string;
+    role: string;
   }
+
 export interface RegisterResponseDTO{
   id: number,
   name:string,

@@ -11,15 +11,15 @@ import { environment } from 'src/environments/environment';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
 
   constructor(private http: HttpClient, private userData: UserdataService,private router: Router) {
-   }
+    this.check = this.check.bind(this); 
+  }
 
   registerForm!: FormGroup;
   isDisabled: boolean = true;
-  selectedFile!: File;
-  filePreview: string | ArrayBuffer | null = null;
+  // roleOption:string[] = ['OWNER','GUEST'];
 
   ngOnInit(): void {
       this.registerForm = new FormGroup({
@@ -30,6 +30,7 @@ export class RegistrationComponent {
         surname: new FormControl('', Validators.required),
         phone: new FormControl('', Validators.required),
         address: new FormControl('', Validators.required),
+        roleOption: new FormControl('OWNER', Validators.required),
         // validationType: new FormControl('', Validators.required),
         btn: new FormControl("")},
         { validators: this.check },
@@ -52,28 +53,44 @@ export class RegistrationComponent {
               console.log('password:',this.registerForm.get('password')?.valid)
               console.log('repeatPassword:',this.registerForm.get('repeatPassword')?.valid)
               console.log('name:',this.registerForm.get('name')?.valid)
+              console.log('name:',this.registerForm.get('naroleOptionme')?.value)
               return;
             }
             let dto: RegistrationDTO | null = null;
+            // console.log('email:',this.registerForm.get('email')?.value)
+            //   console.log('password:',this.registerForm.get('password')?.value)
+            //   console.log('repeatPassword:',this.registerForm.get('repeatPassword')?.value)
+            //   console.log('name:',this.registerForm.get('name')?.value)
+            //   console.log('lastName:',this.registerForm.get('surname')?.value)
+            //   console.log('phoneNum:',this.registerForm.get('phone')?.value)
+            //   console.log('address:',this.registerForm.get('address')?.value)
+            //   console.log('role:',this.registerForm.get('roleOption')?.value)
+
               dto = {
                 email: this.registerForm.get('email')?.value,
                 password: this.registerForm.get('password')?.value,
-                name: this.registerForm.get('name')?.value,
-                surname: this.registerForm.get('surname')?.value,
-                phone: this.registerForm.get('phone')?.value,
+                firstName: this.registerForm.get('name')?.value,
+                lastName: this.registerForm.get('surname')?.value,
+                phoneNumber: this.registerForm.get('phone')?.value,
                 address: this.registerForm.get('address')?.value,
+                repeatPassword:this.registerForm.get('repeatPassword')?.value,
+                role:this.registerForm.get('roleOption')?.value
               }
+
+              console.log(dto);
 
               this.userData.registerUser(dto).subscribe({
                 next: result => {
                   // this.snackBar.open('check email, '+ result.name, undefined, {
                   //   duration: 2000,
                   // });
-                  alert('check email, '+ result.name);
+                  // alert('check email, '+ result.name);
                   this.registerForm.reset();
+                  this.router.navigate(['/login'])
                 },
                 error: e =>
                   {console.log(e?.error?.message);
+                    console.log(e);
                     // this.snackBar.open(e?.error?.message, undefined, {
                     //   duration: 2000,
                     // });

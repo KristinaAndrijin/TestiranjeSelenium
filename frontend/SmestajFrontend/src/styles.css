@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; background-color: rgb(14, 195, 59)}
+html, body { height: 100%; background-color: rgb(163, 114, 15)}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button {
     display: block;
@@ -9,7 +9,7 @@ button {
     font-size: 16px;
     border-radius: 4px;
     border: none;
-    background-color: #1c650a;
+    background-color: #000000;
     color: #fff;
     cursor: pointer;
   }

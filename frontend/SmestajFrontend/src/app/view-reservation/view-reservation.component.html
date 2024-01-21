@@ -1,1 +1,14 @@
-<p>view-reservation works!</p>
+<div class="form-container">
+    <h2 class="mb-4">View reservations</h2>
+    <div class="card" *ngFor="let x of lista">
+      <div class="card-body">
+        <h3>Start Date: {{x.reservationStartDate}}</h3>
+        <h4>End Date: {{x.reservationEndDate}}</h4>
+        <h4>Guest Number: {{x.guestNum}}</h4>
+        <h4>Status: {{x.ReservationStatus}}</h4>
+        <div class="buttondiv">
+            <button *ngIf="!(x.ReservationStatus=='CANCELLED') && !(x.ReservationStatus=='DECLINED')"  type="button" class="btn redBtn text-uppercase wide-btn" (click)="cancel(x.id)">Cancel</button>
+        </div>
+    </div>
+    </div>
+  </div>

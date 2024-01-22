@@ -1,0 +1,99 @@
+.form-container {
+    color: #000001;
+    padding: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
+  }
+
+  .top-right-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 10%;
+    background: #0dff00;
+    backdrop-filter: blur(2px);
+    color: #000000;
+    position: center;
+    border-radius: 15px;
+    border-color: #485162;
+    margin-bottom: 10px;
+  }
+
+  body {
+    background: #66bfe0;
+  }
+  
+  h2{
+    text-align: center;
+  }
+  
+  .card{
+    background: #00000027;
+    color: #EBE8D7;
+    border-radius: 10px;
+    margin: 1rem;
+    width: 30%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-body {
+    height: fit-content;
+    text-align: center;
+  }
+  
+  
+  .transparentBtn {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    color: black;
+    position: center;
+    border-radius: 15px;
+    border-color: black;
+    margin: 1rem;
+  }
+  .redBtn {
+    background: #dc4436;
+    backdrop-filter: blur(2px);
+    color: #000000;
+    position: center;
+    border-radius: 15px;
+    border-color: #485162;
+    width: 100%;
+    margin: 0.2rem;
+  }
+
+  .greenBtn {
+    background: #0a3308;
+    backdrop-filter: blur(2px);
+    color: #ffffff;
+    position: center;
+    border-radius: 15px;
+    border-color: #485162;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  
+  .card-up{
+    margin-top: 1rem;
+  }
+  
+  .my-dialog-container-class{
+    background-color: #485162;
+    color: #EBE8D7;
+  }
+
+  .buttondiv {
+    display: inline-flex;
+    place-items: center;
+    align-content: center;
+    justify-items: center;
+    width: 100%;
+  }
+
+  
+  
+  

@@ -1,1 +1,17 @@
-<p>edit-accomodation works!</p>
+<div class="form-container">
+  <h2 class="mb-4">View availability for accommodation {{ name }} at {{ address }}</h2>
+  <button type="button" class="btn text-uppercase wide-btn top-right-btn" (click)="add()">Add new</button>
+  <div class="card" *ngFor="let x of lista">
+    <div class="card-body">
+      <h4>Start Date: {{ x.startDate }}</h4>
+      <h4>End Date: {{ x.endDate }}</h4>
+      <h4>Cancellation Deadline: {{ x.cancellationDeadline }}</h4>
+      <h4 *ngIf="x.pricePerGuest">Type of Price: per guest</h4>
+      <h4 *ngIf="!x.pricePerGuest">Type of Price: per accommodation</h4>
+      <h4>Price [$]: {{ x.price }}</h4>
+      <div class="buttondiv">
+        <button type="button" class="btn greenBtn text-uppercase wide-btn" (click)="edit(x.id)">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

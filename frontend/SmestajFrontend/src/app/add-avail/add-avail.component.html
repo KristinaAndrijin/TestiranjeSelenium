@@ -1,0 +1,31 @@
+<div class="div">
+    <div class="form-container">
+        <h1>Add new availability</h1>
+        <form
+        method="POST"
+        [formGroup]="accResForm" 
+        (ngSubmit)="add()"
+        >
+        <label for="startDate">Select a Start Date:</label><br/>
+        <input class="element" type="date" id="startDate" name="startDate" formControlName="startDate">
+        <br>
+        <label for="endDate">Select an End Date:</label><br/>
+        <input class="element" type="date" id="endDate" name="endDate" formControlName="endDate">
+        <br>
+        <label for="deadline">Select a Deadline:</label><br/>
+        <input class="element" type="date" id="deadline" name="deadline" formControlName="deadline">
+        <br>
+        <input type="radio" value="perGuest" id="priceType" name="priceType" formControlName="priceType"> Price per guest
+        <br>
+        <input type="radio" value="perAcc" id="priceType" name="priceType" formControlName="priceType"> Price per Accomodation
+        <br><br>
+        <label for="price">Price:</label><br/>
+        <input class="element" type="number" id="price" name="price" placeholder="Price" formControlName="price">
+        <br>
+        <br>
+        <button type="submit" (keydown.enter)="add()">Add new availability</button>
+        </form>
+    </div>
+
+</div>
+  

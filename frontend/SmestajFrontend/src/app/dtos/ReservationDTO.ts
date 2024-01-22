@@ -5,3 +5,12 @@ export interface ReservationDTO {
     guestNum: number,
     ReservationStatus: string;
 }
+
+export interface ReservationAccomodationDTO {
+    id:number,
+    startDate: string,
+    endDate:string,
+    cancellationDeadline: string;
+    pricePerGuest:boolean,
+    price: number
+}

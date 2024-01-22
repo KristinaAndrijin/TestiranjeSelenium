@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,8 @@ import { EditAccomodationComponent } from './edit-accomodation/edit-accomodation
 import { ViewReservationComponent } from './view-reservation/view-reservation.component';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { EditFormComponent } from './edit-form/edit-form.component';
+import { AddAvailComponent } from './add-avail/add-avail.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,16 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
     EditAccomodationComponent,
     ViewReservationComponent,
     LoginComponent,
+    EditFormComponent,
+    AddAvailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule
   ],
   providers: [
     {

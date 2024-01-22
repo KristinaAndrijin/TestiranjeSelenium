@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationDTO } from '../dtos/ReservationDTO';
+import { ReservationsService } from '../services/reservations.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ReservationDTO } from '../dtos/ReservationDTO';
 })
 export class ViewReservationComponent implements OnInit {
 
-  constructor() {}
+  constructor(private service: ReservationsService) {}
 
   lista: Array<ReservationDTO> = new Array<ReservationDTO>();
 
@@ -18,50 +19,13 @@ export class ViewReservationComponent implements OnInit {
   }
 
   getAll(){
-    this.lista.push( {
-        id: 1,
-        reservationStartDate: "15.02.2024.",
-        reservationEndDate: "30.02.2024.",
-        guestNum: 5,
-        ReservationStatus: "ACCEPTED"
-      }
-    );
-    this.lista.push( {
-      id: 2,
-      reservationStartDate: "15.03.2024.",
-      reservationEndDate: "30.03.2024.",
-      guestNum: 5,
-      ReservationStatus: "ACCEPTED"
-    }
-  );
-    this.lista.push( {
-      id: 3,
-      reservationStartDate: "15.04.2024.",
-      reservationEndDate: "30.04.2024.",
-      guestNum: 5,
-      ReservationStatus: "CANCELLED"
-    }
-  );
-    this.lista.push( {
-      id: 4,
-      reservationStartDate: "15.05.2024.",
-      reservationEndDate: "30.05.2024.",
-      guestNum: 5,
-      ReservationStatus: "DECLINED"
-    }
-    );
-    this.lista.push( {
-      id: 5,
-      reservationStartDate: "15.06.2024.",
-      reservationEndDate: "30.06.2024.",
-      guestNum: 5,
-      ReservationStatus: "PENDING"
-    }
-    );
+    this.lista = this.service.getAll();
   }
 
   cancel(id:number) {
     console.log("obrisano");
-    this.lista = this.lista.filter(item => item.id !== id);
+    // this.lista = this.lista.filter(item => item.id !== id);
+    this.service.deleteById(id);
+    this.getAll();
   }
 }

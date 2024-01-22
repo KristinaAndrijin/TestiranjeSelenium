@@ -1,0 +1,1 @@
+ng test --include=src/app/registration/registration.component.spec.ts

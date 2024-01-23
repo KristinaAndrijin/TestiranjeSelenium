@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private http: HttpClient, private userData: UserdataService,private router: Router) {
+  constructor(private http: HttpClient, public userData: UserdataService,private router: Router) {
     this.check = this.check.bind(this); 
   }
 
@@ -100,60 +100,17 @@ export class RegistrationComponent implements OnInit {
               })
   }
 
-  //  check(control: AbstractControl) {
-  //   // return 
-  //   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/;
-  //   const lettersOnlyRegex = /^[A-Za-z]+$/;
-  //   const numbersOnlyRegex = /^\d+$/;
-  //   const password = control.get('password');
-  //   const isValidPassword = passwordRegex.test(password?.value);
-  //   const confirmPassword = control.get('repeatPassword');
-  //   const isValidRepeatPassword = passwordRegex.test(confirmPassword?.value);
-  //   const passwordMatch = password?.value !== confirmPassword?.value;
-  //   const cmail = control.get('email');
-  //   const isValidEmail = emailRegex.test(cmail?.value);
-  //   const name = control.get('name');
-  //   const isValidName = lettersOnlyRegex.test(name?.value) && name?.value != undefined && name?.value != null;
-  //   const surname = control.get('surname');
-  //   const isValidSurname = lettersOnlyRegex.test(surname?.value) && surname?.value != undefined && surname?.value != null;
-    // const phoneNumber = control.get('phone');
-    // const isPhoneValid = numbersOnlyRegex.test(phoneNumber?.value);
-  //   if (isValidEmail && isValidPassword && isValidRepeatPassword && !passwordMatch && isValidName && isValidSurname && isPhoneValid) {
-  //     this.isDisabled = false;
-  //   } else {
-  //     this.isDisabled = true;
-  //   }
-  //   const errors: { [key: string]: any } = {};
-  //   if (!matchPasswords) {
-  //     errors['notSame'] = true;
-  //   }
-  //   if (!isValidEmail) {
-  //     errors['validEmail'] = true;
-  //   }
-  //   if (!isValidPassword) {
-  //     errors['validPassword'] = true;
-  //   }
-  //   if (!isValidRepeatPassword) {
-  //     errors['validRepeatPassword'] = true;
-  //   }
-  //   if (!isValidName) {
-  //     errors['validName'] = true;
-  //   }
-  //   if (!isValidSurname) {
-  //     errors['validSurname'] = true;
-  //   }
-    // if (!isPhoneValid) {
-    //   errors['validPN'] = true;
-    // }
-  //  return Object.keys(errors).length > 0 ? errors : null;
-  // }
-
-  check(control: AbstractControl) {
+   check(control: AbstractControl) {
     // return 
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/;
     const lettersOnlyRegex = /^[A-Za-z]+$/;
     const numbersOnlyRegex = /^\d+$/;
+    const password = control.get('password');
+    const isValidPassword = passwordRegex.test(password?.value);
+    const confirmPassword = control.get('repeatPassword');
+    const isValidRepeatPassword = passwordRegex.test(confirmPassword?.value);
+    const passwordMatch = password?.value !== confirmPassword?.value;
     const cmail = control.get('email');
     const isValidEmail = emailRegex.test(cmail?.value);
     const name = control.get('name');
@@ -162,7 +119,11 @@ export class RegistrationComponent implements OnInit {
     const isValidSurname = lettersOnlyRegex.test(surname?.value) && surname?.value != undefined && surname?.value != null;
     const phoneNumber = control.get('phone');
     const isPhoneValid = numbersOnlyRegex.test(phoneNumber?.value);
-    if (isValidEmail && isValidName && isValidSurname && isPhoneValid) {
+    const roleOption = control.get('roleOption');
+    const isRoleEmpty = roleOption?.value != undefined && roleOption?.value != null && roleOption?.value != "";
+    const address = control.get('address');
+    const isAddressEmpty = address?.value != undefined && address?.value != null && address?.value != "";
+    if (isValidEmail && isValidPassword && isValidRepeatPassword && !passwordMatch && isValidName && isValidSurname && isPhoneValid && isRoleEmpty && isAddressEmpty) {
       this.isDisabled = false;
     } else {
       this.isDisabled = true;
@@ -173,6 +134,12 @@ export class RegistrationComponent implements OnInit {
     }
     if (!isValidEmail) {
       errors['validEmail'] = true;
+    }
+    if (!isValidPassword) {
+      errors['validPassword'] = true;
+    }
+    if (!isValidRepeatPassword) {
+      errors['validRepeatPassword'] = true;
     }
     if (!isValidName) {
       errors['validName'] = true;
@@ -185,6 +152,43 @@ export class RegistrationComponent implements OnInit {
     }
    return Object.keys(errors).length > 0 ? errors : null;
   }
+
+  // check(control: AbstractControl) {
+  //   // return 
+  //   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  //   const lettersOnlyRegex = /^[A-Za-z]+$/;
+  //   const numbersOnlyRegex = /^\d+$/;
+  //   const cmail = control.get('email');
+  //   const isValidEmail = emailRegex.test(cmail?.value);
+  //   const name = control.get('name');
+  //   const isValidName = lettersOnlyRegex.test(name?.value) && name?.value != undefined && name?.value != null;
+  //   const surname = control.get('surname');
+  //   const isValidSurname = lettersOnlyRegex.test(surname?.value) && surname?.value != undefined && surname?.value != null;
+  //   const phoneNumber = control.get('phone');
+  //   const isPhoneValid = numbersOnlyRegex.test(phoneNumber?.value);
+  //   if (isValidEmail && isValidName && isValidSurname && isPhoneValid) {
+  //     this.isDisabled = false;
+  //   } else {
+  //     this.isDisabled = true;
+  //   }
+  //   const errors: { [key: string]: any } = {};
+  //   if (!matchPasswords) {
+  //     errors['notSame'] = true;
+  //   }
+  //   if (!isValidEmail) {
+  //     errors['validEmail'] = true;
+  //   }
+  //   if (!isValidName) {
+  //     errors['validName'] = true;
+  //   }
+  //   if (!isValidSurname) {
+  //     errors['validSurname'] = true;
+  //   }
+  //   if (!isPhoneValid) {
+  //     errors['validPN'] = true;
+  //   }
+  //  return Object.keys(errors).length > 0 ? errors : null;
+  // }
 }
 
 export function matchPasswords(control: AbstractControl) {

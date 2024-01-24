@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, AbstractControl, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
@@ -6,6 +5,7 @@ import { UserdataService } from '../services/userdata.service';
 import { environment } from 'src/environments/environment';
 import { JwtService } from '../services/jwt.service';
 import { UserDTO } from '../dtos/UserDTOs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
@@ -13,7 +13,7 @@ import { UserDTO } from '../dtos/UserDTOs';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
-  constructor(private http: HttpClient, private userData: UserdataService,private router: Router, private jwtService: JwtService) {
+  constructor(private http: HttpClient, public userData: UserdataService,private router: Router, public jwtService: JwtService) {
     this.check = this.check.bind(this); 
   }
 
@@ -25,6 +25,16 @@ export class AccountComponent {
   userOld!: UserDTO
 
   ngOnInit(): void {
+    this.accountForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      surname: new FormControl("", Validators.required),
+      phone: new FormControl("", Validators.required),
+      address: new FormControl("", Validators.required),
+      email: new FormControl("", Validators.required),
+      // validationType: new FormControl('', Validators.required),
+      btn: new FormControl("")},
+      { validators: this.check },
+    );
     this.id = this.jwtService.getId() ?? "-1";
     console.log(this.id);
     this.userData.getUser(this.id).subscribe({
@@ -58,6 +68,17 @@ export class AccountComponent {
         //this.registerForm.reset();
         }
     })
+
+    // this.accountForm = new FormGroup({
+    //   name: new FormControl("", Validators.required),
+    //   surname: new FormControl("", Validators.required),
+    //   phone: new FormControl("", Validators.required),
+    //   address: new FormControl("", Validators.required),
+    //   email: new FormControl("", Validators.required),
+    //   // validationType: new FormControl('', Validators.required),
+    //   btn: new FormControl("")},
+    //   { validators: this.check },
+    // );
     // console.log(user);
   }
 
@@ -169,7 +190,10 @@ export class AccountComponent {
     const isValidSurname = lettersOnlyRegex.test(surname?.value) && surname?.value != undefined && surname?.value != null;
     const phoneNumber = control.get('phone');
     const isPhoneValid = numbersOnlyRegex.test(phoneNumber?.value);
-    if (isValidEmail && isValidName && isValidSurname && isPhoneValid) {
+    const address = control.get('address');
+    const isAddressEmpty = address?.value != undefined && address?.value != null && address?.value != "";
+   
+    if (isValidEmail && isValidName && isValidSurname && isPhoneValid && isAddressEmpty) {
       this.isDisabled = false;
     } else {
       this.isDisabled = true;

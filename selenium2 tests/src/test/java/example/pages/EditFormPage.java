@@ -141,11 +141,10 @@ public class EditFormPage {
 
         } catch (UnhandledAlertException e) {
             Helper.takeScreenshoot(driver, "alert catch " + new Date().getTime());
-            // Handle the alert
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            System.out.println("Alert text catch: " + alertText);
-            alert.accept();
+//            Alert alert = driver.switchTo().alert();
+//            String alertText = alert.getText();
+//            System.out.println("Alert text catch: " + alertText);
+//            alert.accept();
         }
 
     }

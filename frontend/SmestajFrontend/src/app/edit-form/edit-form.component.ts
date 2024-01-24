@@ -34,12 +34,22 @@ export class EditFormComponent implements OnInit {
       b = 'perAcc'
     }
 
+    // this.accResForm = new FormGroup({
+    //   startDate: new FormControl(this.changeSerToAmer(res?.startDate), Validators.required),
+    //   endDate: new FormControl(this.changeSerToAmer(res?.endDate), Validators.required),
+    //   deadline: new FormControl(this.changeSerToAmer(res?.cancellationDeadline), Validators.required),
+    //   priceType: new FormControl(b, Validators.required),
+    //   price: new FormControl(res?.price, Validators.required),
+    //   // validationType: new FormControl('', Validators.required),
+    //   btn: new FormControl("")},
+    // );
+
     this.accResForm = new FormGroup({
-      startDate: new FormControl(this.changeSerToAmer(res?.startDate), Validators.required),
-      endDate: new FormControl(this.changeSerToAmer(res?.endDate), Validators.required),
-      deadline: new FormControl(this.changeSerToAmer(res?.cancellationDeadline), Validators.required),
-      priceType: new FormControl(b, Validators.required),
-      price: new FormControl(res?.price, Validators.required),
+      startDate: new FormControl("", Validators.required),
+      endDate: new FormControl("", Validators.required),
+      deadline: new FormControl("", Validators.required),
+      priceType: new FormControl("", Validators.required),
+      price: new FormControl("", Validators.required),
       // validationType: new FormControl('', Validators.required),
       btn: new FormControl("")},
     );
@@ -50,6 +60,11 @@ export class EditFormComponent implements OnInit {
     const startDate = new Date(this.accResForm.get('startDate')?.value);
     const endDate = new Date(this.accResForm.get('endDate')?.value);
     const deadline = new Date(this.accResForm.get('deadline')?.value);
+
+    console.log(currentDate);
+    console.log(this.accResForm.get('startDate')?.value);
+    console.log(this.accResForm.get('endDate')?.value);
+    console.log(this.accResForm.get('deadline')?.value);
 
     if (startDate <= currentDate || endDate <= currentDate || deadline <= currentDate) {
       alert('All dates should be in the future.');
@@ -74,6 +89,7 @@ export class EditFormComponent implements OnInit {
     const deadline1 = (this.accResForm.get('deadline')?.value);
     const priceType = (this.accResForm.get('priceType')?.value);
     const price = (this.accResForm.get('price')?.value);
+    console.log(price);
 
     let p = true;
     if (priceType == 'perAcc') {
